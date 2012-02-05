@@ -13,4 +13,18 @@ describe GenericModel do
       generic_model.should_not be_valid
     end
   end
+
+  describe "attributes" do
+    let(:generic_model) do
+      FactoryGirl.create(:generic_model, { name: 'BlogPost' })
+    end
+
+    it "should hold some attributes" do
+      generic_model.add_attribute :title
+      generic_model.add_attribute :intro
+      generic_model.add_attribute :content
+      expected = [:title, :intro, :content]
+      generic_model.attributes.should == expected
+    end
+  end
 end
