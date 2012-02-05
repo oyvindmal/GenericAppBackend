@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205155520) do
+ActiveRecord::Schema.define(:version => 20120205162333) do
 
   create_table "generic_attributes", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(:version => 20120205155520) do
   end
 
   add_index "generic_attributes", ["generic_model_id"], :name => "index_generic_attributes_on_generic_model_id"
+
+  create_table "generic_instance_attributes", :force => true do |t|
+    t.integer  "generic_instance_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "generic_instances", :force => true do |t|
+    t.integer  "generic_model_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "generic_instances", ["generic_model_id"], :name => "index_generic_instances_on_generic_model_id"
 
   create_table "generic_models", :force => true do |t|
     t.string   "name"
